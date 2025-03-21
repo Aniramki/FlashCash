@@ -33,63 +33,38 @@
 </nav>
 
 <div class="container mt-5">
-    <h2 class="text-center">Bonjour, <span th:text="${user.firstName}"></span> <i class="fa-solid fa-bolt-lightning text-danger"></i></h2>
+    <h2 class="text-center">Hello <i class="fa-solid fa-bolt-lightning text-danger"></i>, <span th:text="${user.firstName}"></span></h2>
     <div class="row mt-4">
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
             <div class="card">
                 <div class="card-body text-center">
-                    <h5 class="card-title" >Votre IBAN est</h5>
-                    <p class="card-text"><span th:text="${userAccount.iban}"></span>/n ou ajoutez un nouveau</p>
-                    <a th:href="@{/add-iban}" class="btn btn-danger">Ajouter</a>
+                    <h5 class="card-title" >Your IBAN is</h5>
+                    <p class="card-text"><span th:text="${userAccount.iban}"></span></p>
+                    <a th:href="@{/add-iban}" class="btn btn-danger">Add IBAN</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title" >Your Sold FlashCash is</h5>
+                    <p class="card-text"><span th:text="${userAccount.amount}"></span></p>
+                    <a th:href="@{/add-iban}" class="btn btn-danger">Add cash to FlashCash</a>
                 </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
             <div class="card">
-                <a href="#">
-                <img src="images/logo-credit-agricole-1.jpg" class="card-img-top" alt="credit-agricole">
-                </a>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Credit Agricole</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <a href="#" class="btn ">Lire plus...</a>
+                    <h5 class="card-title" >List of your Friends</h5>
+                    <p class="card-text"><span th:text="${user.iban}"></span></p>
+                    <a th:href="@{/add-iban}" class="btn btn-danger">Add Friend</a>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
             <div class="card">
-                <a href="#">
-                <img src="images/Logo-BNP-Paribas.jpg" class="card-img-top" alt="Logo-BNP-Paribas">
-                </a>
-                    <div class="card-body text-center">
-                    <h5 class="card-title">BNP Paribas</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <a href="#" class="btn ">Lire plus...</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
-            <div class="card">
-                <a href="#">
-                <img src="images/Team_Caisse_d’Epargne.png" class="card-img-top" alt="Caisse_d’Epargne">
-                </a>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Caisse d’Epargne</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <a href="#" class="btn ">Lire plus...</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
-            <div class="card">
-                <a href="#">
-                <img src="images/Logo_La_Banque_postale_2022.svg" class="card-img-top" alt="Logo_La_Banque_postale_2022">
-                </a>
-                    <div class="card-body text-center">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <a href="#" class="btn ">Lire plus...</a>
+                    <h5 class="card-title" >Votre Sold FlashCash est</h5>
+                    <p class="card-text"><span th:text="${userAccount.amount}"></span></p>
+                    <a th:href="@{/add-iban}" class="btn btn-danger">Add cash to FlashCash</a>
                 </div>
             </div>
         </div>

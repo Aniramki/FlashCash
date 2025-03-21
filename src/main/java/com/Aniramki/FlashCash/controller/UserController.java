@@ -1,6 +1,7 @@
 package com.Aniramki.FlashCash.controller;
 
 import com.Aniramki.FlashCash.model.UserAccount;
+import com.Aniramki.FlashCash.service.form.AddContactForm;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -78,6 +79,20 @@ public class UserController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/add-friend")
+    public ModelAndView showAddIbanForm() {
+        return new ModelAndView("add-iban", "addIbanForm", new AddIbanForm());
+
+    }
+
+
+    @PostMapping("/add-friend")
+
+    public String addIban(@ModelAttribute("addContactForm") AddContactForm contactForm,
+                          @AuthenticationPrincipal UserDetails userDetails) {
+        userService.addContactToUser(contactForm, userDetails.getUsername());
+        return "redirect:/profile";
+    }
 
     @GetMapping("/profile")
     public ModelAndView profile(Model model) {
