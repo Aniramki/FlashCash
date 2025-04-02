@@ -1,0 +1,67 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>AddContactForm for FlashCash</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contribution">
+    <meta name="generator" content="Hugo 0.82.0">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="/css/opensans-font.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body class="form-v7 ">
+<div class="page-content">
+    <div class="form-v7-content">
+        <div class="form-left">
+            <img src="/images/maxresdefault.jpg" alt="form">
+
+
+        </div>
+
+        <form th:action="@{/transfer-to-contact}"  class="form-detail"  method="post" >
+
+            <div class="form-row">
+                <h1 class="text-1">Send money to your FRIEND</h1>
+                <h5 class="card-title" >List of your Friends</h5>
+                <div th:if="${friends.isEmpty()}">
+                    <p>No friends yet. Start by adding a friend!</p>
+                </div>
+                <div th:if="${not friends.isEmpty()}">
+                    <ul class="list-group">
+                        <select class="form-select" name="friendEmail" required>
+                            <option value="">Select a friend</option>
+                            <option th:each="friend : ${friends}"
+                                    th:value="${friend.email}"
+                                    th:text="${friend.firstName + ' ' + friend.lastName + ' : ' + friend.email}">
+                            </option>
+                        </select>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="amountAfterFee">Amount to Add</label>
+                                    <input type="number" th:value="${amountAfterFee}" id="amountAfterFee" name="amountAfterFee" class="form-control" placeholder="Enter Amount" required />
+                                </div>
+                            </div>
+                        </div>
+
+            <div class="form-row-last">
+                <input type="submit" name="register" class="register" value="Add">
+                <div th:if="${errorMessage}" class="alert alert-danger">
+                    <span th:text="${errorMessage}"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

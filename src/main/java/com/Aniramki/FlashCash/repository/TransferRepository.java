@@ -11,12 +11,11 @@ public interface TransferRepository  extends CrudRepository<Transfer, Long> {
     //attention HQL on pointe sur l objets du code et pas sur la base en direct
     //au besoin si on veux faire du vrai sql rajoiter (nativeQuery = true) apres les guillements
 
-    /*
-    @Query(value= SELECT *FROM Transfer WHERE from_id="id", nativeQuery = true)
-    List<Transfer> findTransferByUserId(Integer id);
-     */
+
     public Optional<Transfer> findTransferByDate(String transfer);
 
     @Query("SELECT t FROM Transfer t WHERE t.from.id= :id")
     List<Transfer> findTransferByUser(Integer id);
+
+
 }

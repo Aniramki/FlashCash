@@ -7,6 +7,11 @@
 body {
 	margin: 0;
 	font-family: 'Open Sans', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
 }
 
 .page-content {
@@ -184,7 +189,11 @@ th {
 	color: red !important;
 }
 
-/* Адаптивность */
+.acquisitions {
+width: 800px; margin: 50px 200px
+}
+
+
 @media screen and (max-width: 991px) {
 	.form-v7-content {
 		margin: 50px 20px;
@@ -297,6 +306,15 @@ body {
     margin-bottom: 30px; /* Добавим отступ снизу, чтобы избежать наложений */
 }
 
+.inlineimage{max-width:470px;margin-right: 8px;margin-left: 10px}
+.images{display: inline-block;
+max-width: 98%;
+height: auto;
+width: 22%;
+margin: 1%;
+left:20px;
+text-align: center}
+
 /* Мобильная адаптация */
 @media (max-width: 767px) {
     .col-sm-12 {
@@ -317,12 +335,13 @@ body {
     }
 }
 
-/* Стиль для футера */
+
 .footer {
     background: linear-gradient(136deg, rgb(254, 225, 64) 0%, rgb(250, 112, 154) 100%);
     color: white;
     padding: 20px 0;
     font-size: 14px;
+    margin-top: auto;
 }
 
 .footer p {

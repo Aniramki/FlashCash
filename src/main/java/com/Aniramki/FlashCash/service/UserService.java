@@ -4,6 +4,7 @@ import com.Aniramki.FlashCash.model.User;
 import com.Aniramki.FlashCash.model.UserAccount;
 import com.Aniramki.FlashCash.repository.UserAccountRepository;
 import com.Aniramki.FlashCash.repository.UserRepository;
+import com.Aniramki.FlashCash.service.form.AddContactForm;
 import com.Aniramki.FlashCash.service.form.AddIbanForm;
 import com.Aniramki.FlashCash.service.form.SignInForm;
 import com.Aniramki.FlashCash.service.form.SignUpForm;
@@ -65,6 +66,8 @@ public class UserService {
                userAccount.setIban(ibanForm.getIban());
        return userAccountRepository.save(userAccount);
     }
+
+
 
 //    public Optional<User> passwordCompare(SignInForm form) {
 //        Optional<User> optionalUser = userRepository.findUserByEmail(form.getEmail());

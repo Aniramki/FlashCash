@@ -1,8 +1,8 @@
 package com.Aniramki.FlashCash.controller;
 
 import com.Aniramki.FlashCash.model.UserAccount;
-import com.Aniramki.FlashCash.service.form.AddContactForm;
-import jakarta.servlet.http.HttpSession;
+import com.Aniramki.FlashCash.service.dto.BarChartForm;
+import com.Aniramki.FlashCash.service.form.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
@@ -11,18 +11,13 @@ import com.Aniramki.FlashCash.service.LinkService;
 import com.Aniramki.FlashCash.service.SessionService;
 import com.Aniramki.FlashCash.service.TransferService;
 import com.Aniramki.FlashCash.service.UserService;
-import com.Aniramki.FlashCash.service.form.AddIbanForm;
-import com.Aniramki.FlashCash.service.form.SignInForm;
-import com.Aniramki.FlashCash.service.form.SignUpForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.Aniramki.FlashCash.model.Transfer;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 
 @Controller
@@ -80,8 +75,8 @@ public class UserController {
     }
 
     @GetMapping("/add-friend")
-    public ModelAndView showAddIbanForm() {
-        return new ModelAndView("add-iban", "addIbanForm", new AddIbanForm());
+    public ModelAndView showAddFriendForm() {
+        return new ModelAndView("add-friend", "addFriendForm", new AddContactForm());
 
     }
 
@@ -90,7 +85,7 @@ public class UserController {
 
     public String addIban(@ModelAttribute("addContactForm") AddContactForm contactForm,
                           @AuthenticationPrincipal UserDetails userDetails) {
-        userService.addContactToUser(contactForm, userDetails.getUsername());
+        linkService.addContactToUser(contactForm, userDetails.getUsername());
         return "redirect:/profile";
     }
 
@@ -98,16 +93,36 @@ public class UserController {
     public ModelAndView profile(Model model) {
         User user = sessionService.sessionUser();
         UserAccount userAccount = user.getAccount();
-       model.addAttribute("user", user);
+        model.addAttribute("user", user);
+        List<User> friends = linkService.getFriends(user);
+        model.addAttribute("friends", friends);
         model.addAttribute("userAccount", userAccount);
-
         List<Transfer> transactions = transferService.findTransactions();
         model.addAttribute("transfers", transactions);
 
                 return new ModelAndView("profile");
 
+
+
     }
 
+
+
+
+//    @GetMapping("/friendAmountMonth")
+//    public ModelAndView showBarChartForm() {
+//        return new ModelAndView("friendAmountMonth", "BarChartForm", new BarChartForm());
+//
+//    }
+//
+//
+//    @PostMapping("/friendAmountMonth")
+//    public List<Map<String, Object>> getFriendAmountMonth(
+//            @RequestParam int userId,
+//            @RequestParam(required = false) Integer year) {
+//
+//        return jdbcTemplate.queryForList("CALL spFriendAmountMonth(?, ?)", userId, year);
+//    }
 
 
 

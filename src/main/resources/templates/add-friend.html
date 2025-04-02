@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>AddIbanForm for FlashCash</title>
+    <title>AddContactForm for FlashCash</title>
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
@@ -22,20 +22,19 @@
     <div class="form-v7-content">
         <div class="form-left">
             <img src="/images/maxresdefault.jpg" alt="form">
-            <p class="text-1">Add your IBAN</p>
+            <p class="text-1">Add your FRIEND</p>
 
         </div>
 
-        <form th:action="@{/add-iban}"  class="form-detail"  method="post" >
-
+        <form th:action="@{/add-friend}"  class="form-detail"  method="post" >
 
             <div class="form-row">
-                <label for="iban">IBAN</label>
-                <input type="iban" name="iban" id="iban" class="input-text" required>
+                <label for="email">E-MAIL</label>
+                <input type="text" th:value="${email}" name="email" id="email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
             </div>
 
             <div class="form-row-last">
-                <input type="submit" name="register" class="register" value="ADD">
+                <input type="submit" name="register" class="register" value="Add">
                 <div th:if="${errorMessage}" class="alert alert-danger">
                     <span th:text="${errorMessage}"></span>
                 </div>
