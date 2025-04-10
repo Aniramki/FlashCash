@@ -20,13 +20,17 @@ public class User {
     private String password;
     @ManyToMany
     private List<Link> links;
+    private String color;
 
-    public User(String firstName, String lastName, String email, String password, UserAccount account) {
+
+
+    public User(String firstName, String lastName, String email, String password, UserAccount account, String color) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.account = account;
+        this.color = color;
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -93,5 +97,12 @@ public class User {
 
     public void setAccount(UserAccount account) {
         this.account = account;
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.Year;
 import java.util.List;
+import java.util.Objects;
 
 
 @Controller
@@ -49,7 +51,8 @@ public class TransferController {
         model.addAttribute("userAccount", userAccount);
         List<Transfer> transactions = transferService.findTransactions();
         model.addAttribute("transfers", transactions);
-
+        List<Object[]> dataset = transferService.spFriendAmountMonth(user.getId(), Year.now().getValue());
+        model.addAttribute("dataset", dataset);
         return new ModelAndView("transfers");
     }
 
@@ -73,6 +76,8 @@ public class TransferController {
         return "redirect:/transfers";
 
     }
+
+
 
 
 }

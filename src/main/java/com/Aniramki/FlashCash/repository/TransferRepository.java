@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public interface TransferRepository  extends CrudRepository<Transfer, Long> {
@@ -16,6 +17,9 @@ public interface TransferRepository  extends CrudRepository<Transfer, Long> {
 
     @Query("SELECT t FROM Transfer t WHERE t.from.id= :id")
     List<Transfer> findTransferByUser(Integer id);
+
+    @Query(value = "CALL spFriendAmountMonth(?1,?2)", nativeQuery = true)
+    List<Object[]> spFriendAmountMonth(int userFromId , int yearTransfer );
 
 
 }

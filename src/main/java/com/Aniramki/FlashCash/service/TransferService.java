@@ -14,9 +14,11 @@ import com.Aniramki.FlashCash.service.form.AddToFlashCashForm;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service("TransferService")
 public class TransferService {
@@ -69,5 +71,12 @@ public class TransferService {
             return   transferRepository.save(transfer);
 
         }
+
+        public List<Object[]> spFriendAmountMonth(int userFromId , int yearTransfer ) {
+        yearTransfer =  Year.now().getValue();
+        List<Object[]> dataset = transferRepository.spFriendAmountMonth(sessionService.sessionUser().getId(), yearTransfer);
+
+        return dataset;
+        };
 
 }

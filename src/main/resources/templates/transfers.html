@@ -39,7 +39,7 @@
 <div class="container mt-5">
     <h2 class="text-center">Hello <i class="fa-solid fa-bolt-lightning text-danger"></i>, <span th:text="${user.firstName}"></span></h2>
     <div class="acquisitions"><canvas id="acquisitions"></canvas></div>
-    <script>
+    <script th:inline="javascript">
 
                 document.addEventListener("DOMContentLoaded", function () {
             const chart = document.getElementById("acquisitions").getContext("2d");
@@ -47,35 +47,36 @@
 
             let datasetFormated = {};
 
-            let dataset = [
-                [
-                "Jan", "friend1", 10, "#123"
-                ],
-                [
-                "Jan", "friend2", 20, "#456"
-                ],
-                [
-                "Jan", "friend3", 30, "#789"
-                ],
-                [
-                "Feb", "friend1", 40, "#123"
-                ],
-                [
-                "Feb", "friend2", 50, "#456"
-                ],
-                [
-                "Feb", "friend3", 60, "#789"
-                ],
-                [
-                "Mar", "friend1", 70, "#123"
-                ],
-                [
-                "Mar", "friend2", 80, "#456"
-                ],
-                [
-                "Mar", "friend3", 90, "#789"
-                ]
-            ]
+            let dataset = [[${dataset}]];
+            console.log(dataset);
+<!--               [ [-->
+<!--                "Jan", "friend1", 10, "#123"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Jan", "friend2", 20, "#456"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Jan", "friend3", 30, "#789"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Feb", "friend1", 40, "#123"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Feb", "friend2", 50, "#456"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Feb", "friend3", 60, "#789"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Mar", "friend1", 70, "#123"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Mar", "friend2", 80, "#456"-->
+<!--                ],-->
+<!--                [-->
+<!--                "Mar", "friend3", 90, "#789"-->
+<!--                ]]-->
+
 
             let labels = [];
             let prevLabel = '';
@@ -87,15 +88,15 @@
                 {
                     datasetFormated[friend] = {
                         label: friend,
-                        data: [item[2]],
-                        background: item[3],
+                        data: [item[3]],
+                        background: item[4],
                         stack: 0
                     }
                 } else {
-                    datasetFormated[friend]['data'].push(item[2]);
+                    datasetFormated[friend]['data'].push(item[3]);
                 }
 
-                let lbl = item[0];
+                let lbl = item[2];
                 if(lbl != prevLabel){
                     labels.push(lbl);
                 }
@@ -158,7 +159,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
             <div class="card">
                 <div class="card-body text-center">
-                    <h5 class="card-title" >List of your Transfers</h5>
+                    <h5 class="card-title">List of your Transfers</h5>
                     <div th:if="${transfers.isEmpty()}">
                         <p>No transfers yet!</p>
                     </div>
